@@ -1,3 +1,5 @@
+import 'package:covid_app/constants.dart';
+import 'package:covid_app/home_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -7,8 +9,16 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: new HomePage(),
+    return MaterialApp(
+      title: 'Covid App',
+      theme: ThemeData(
+        scaffoldBackgroundColor: kBackgroundColor,
+        fontFamily: 'Poppins',
+        textTheme: TextTheme(
+          bodyText2: TextStyle(color: kBodyTextColor),
+        ),
+      ),
+      home: HomeScreen(),
     );
   }
 }
