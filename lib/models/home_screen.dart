@@ -1,5 +1,6 @@
-import 'package:covid_app/clipper_file.dart';
-import 'package:covid_app/constants.dart';
+import 'package:covid_app/constants/constants.dart';
+import 'package:covid_app/widgets/counter.dart';
+import 'package:covid_app/widgets/header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -9,59 +10,10 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          ClipPath(
-            clipper: MyClipper(),
-            child: Container(
-              padding: EdgeInsets.only(left: 40, top: 50, right: 20),
-              height: 350,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    Color(0xFF3383CD),
-                    Color(0xFF11249F),
-                  ],
-                ),
-                image: DecorationImage(
-                  image: AssetImage('assets/images/virus.png'),
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Align(
-                    alignment: Alignment.topRight,
-                    child: SvgPicture.asset('assets/icons/menu.svg'),
-                  ),
-                  SizedBox(height: 20),
-                  Expanded(
-                    child: Stack(
-                      children: [
-                        SvgPicture.asset(
-                          'assets/icons/Drcorona.svg',
-                          width: 230,
-                          fit: BoxFit.cover,
-                          alignment: Alignment.topCenter,
-                        ),
-                        Positioned(
-                          top: 20,
-                          left: 150,
-                          child: Text(
-                            'All you need \nis to stay at home',
-                            style: kHeadingTextStyle.copyWith(
-                              color: Colors.white,
-                            ),
-                          ),
-                        ),
-                        Container(),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+          MyHeader(
+            image: 'assets/icons/Drcorona.svg',
+            textTop: 'All you need',
+            textBottom: 'is to stay at home',
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
@@ -136,6 +88,75 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(height: 20),
                 Container(
                   padding: EdgeInsets.all(20),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(0, 4),
+                        blurRadius: 30,
+                        color: kShadowColor,
+                      )
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Counter(
+                        number: 1046,
+                        color: kInfectedColor,
+                        title: 'Infected',
+                      ),
+                      Counter(
+                        number: 87,
+                        color: kDeathColor,
+                        title: 'Deaths',
+                      ),
+                      Counter(
+                        number: 46,
+                        color: kRecovercolor,
+                        title: 'Recovered',
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Spread of Virus',
+                      style: kTitleTextstyle,
+                    ),
+                    Text(
+                      'See details',
+                      style: TextStyle(
+                        color: kPrimaryColor,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 20),
+                  padding: EdgeInsets.all(20),
+                  height: 178,
+                  width: double.infinity,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        offset: Offset(0, 10),
+                        blurRadius: 30,
+                        color: kShadowColor,
+                      ),
+                    ],
+                  ),
+                  child: Image.asset(
+                    'assets/images/map.png',
+                    fit: BoxFit.contain,
+                  ),
                 )
               ],
             ),
